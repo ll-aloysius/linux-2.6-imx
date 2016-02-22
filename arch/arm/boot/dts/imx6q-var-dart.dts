@@ -144,6 +144,29 @@
 	};
 };
 
+&iomuxc {
+	charger {
+		pinctrl_charger {
+			fsl,pins = <
+				MX6QDL_PAD_DISP0_DAT13__GPIO5_IO07         0x130B9
+			>;
+		};
+	};
+};
+
+&i2c3 {
+	bq24160@6b {
+		compatible = "ti,bq24160";
+		reg = <0x6b>;
+		gpios = <&gpio5 7 0>;		/* DISP0_DAT13 */
+		iterrupt-parent = <&gpio5>;
+		interrupts = <7 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "bq24160-irq";
+		dev_name = "bq24160";
+		support_boot_charging = <0>;
+	};
+};
+
 &ldb {
 	lvds-channel@0 {
 		crtc = "ipu1-di0";
