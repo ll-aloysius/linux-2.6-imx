@@ -177,6 +177,9 @@
 	};
 };
 
+&ssi2 {
+	status = "disabled";
+};
 
 &mxcfb1 {
 	status = "okay";
